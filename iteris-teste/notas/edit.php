@@ -5,7 +5,7 @@
 
 <?php include(HEADER_TEMPLATE); ?>
 
-<h2>Atualizar Cliente</h2>
+<h2>Editar Nota</h2>
 
 <form action="edit.php?id=<?php echo $nota['id']; ?>" method="post">
   <hr />
@@ -30,14 +30,14 @@
       </div>
       <div class="form-group col-md-2">         
         <label for="dataPagamento">Data de Pagamento</label>
-        <input id="dataPagamento" type="text" class="form-control" name="nota['dataPagamento']" value="<?=$nota['dataPagamento']?>">       
+        <input readonly="true" id="dataPagamento" type="text" class="form-control" name="nota['dataPagamento']" value="<?=$nota['dataPagamento']?>">       
       </div>
   </div>
 
   <div class="row">
     <div class="form-group col-md-4">
       <label for="status">Status</label>
-      <input type="text" class="form-control" name="nota['status']" value="<?=$nota['status']?>">
+      <input readonly="true" type="text" class="form-control" name="nota['status']" value="<?=$nota['status']?>">
     </div>
   </div>
   

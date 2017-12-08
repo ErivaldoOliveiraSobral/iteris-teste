@@ -200,3 +200,10 @@ function findByNumber($numero = null) {
   close_database($database);      
   return $found;    
 }
+
+/**
+*   Atecipação de Pagamento DB
+*/
+function antecipated($id = null){
+  echo $id;
+}

@@ -68,3 +68,11 @@ function buscaNumero($numero = null){
   global $nota;
   $nota = findByNumber($numero);
 }
+
+/**
+*   Solicitaçãod de Antecipação de pagamento
+*/
+function antecipar($id = null){
+  global $nota;
+  $nota = antecipated($id);
+}

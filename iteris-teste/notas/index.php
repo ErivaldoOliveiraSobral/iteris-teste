@@ -59,7 +59,7 @@
 					<td width="30%"><?=$nota['descricao'];?></td>				
 					<td width="10%"><?=$nota['dataFaturamento']?></td>				
 					<td width="10%"><?=$nota['dataPagamento'];?></td>
-					<td width="8%";><?=$nota['status']?></td>				
+					<td width="10%";><?=$nota['status']?></td>				
 					<td class="actions text-center">					
 						<a href="view.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-success">
 							<i class="fa fa-eye"></i> Visualizar</a>

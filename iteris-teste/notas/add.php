@@ -32,13 +32,21 @@
 	    	<input id="dataPagamento" type="text" class="form-control" name="nota['dataPagamento']" placeholder="00/00/0000">		    
 	    </div>
 	</div>
-
-	<div class="row">
+		
+	<div class="radio">
+    	<label><input id="status" type="radio" name="nota['status']" value="A pagar">A pagar</label>
+    </div>
+    <div class="radio">
+    	<label><input id="status" type="radio" name="nota['status']" value="A Receber">A receber</label>
+    </div>
+	
+		<!--
 		<div class="form-group col-md-4">
 			<label for="status">Status</label>
 			<input type="text" class="form-control" name="nota['status']">
 		</div>
-	</div>
+		-->
+	
 
 	<div id="actions" class="row">		    
     	<div class="col-md-12">		      
