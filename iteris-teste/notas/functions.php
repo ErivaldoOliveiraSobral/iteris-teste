@@ -85,3 +85,18 @@ function antecipar($id = null){
     header('location: index.php');
   }
 }
+
+/**
+*   Lista de Notas aguardando aprovação da antecipação
+*/
+function indexGestor() {      
+  global $notas;      
+  $notas = find_all_pendentes('notas'); 
+}
+
+function aprove($id = null){
+  global $notas;
+  $notas = aprovar($id);
+
+  header('location: gestor.php');
+}

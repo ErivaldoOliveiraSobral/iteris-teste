@@ -1,33 +1,16 @@
 <?php		    
 	require_once('functions.php');		    
-	index();		
+	indexGestor();		
 ?>	
 <?php include('modal.php'); ?>	
 <?php include(HEADER_TEMPLATE); ?>		
 
 <header>		
-	<div class="row">				
-		<div class="col-sm-6">					
-			<h2>Notas</h2>				
-		</div>
-		
-		<div class="col-sm-6 text-right h2">			    	
-			<a class="btn btn-primary" href="add.php"><i class="fa fa-plus"></i> Nova Nota</a>			    	
-			<a class="btn btn-default" href="index.php"><i class="fa fa-refresh"></i> Atualizar</a>
-		</div>
-		<div class="container">
-			<form action="buscaPorNumero.php">
-				<div class="input-group">
-		  			<input type="text" class="form-control" placeholder="Buscar por Número da Nota" name="numero">
-		  			<div class="input-group-btn">
-		    			<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-		  			</div>
-				</div>
-			</form>
-		</div>
+	<div class="col-sm-6">					
+		<h2>Notas</h2>				
 	</div>
 </header>		
-		
+
 <?php 
 	if (!empty($_SESSION['message'])) : ?>			
 		<div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">				
@@ -41,7 +24,7 @@
 <hr>		
 <table class="table table-hover">		
 	<thead>			
-		<tr>				
+		<tr>						
 			<th>Numero</th>				
 			<th>Descrição</th>				
 			<th>Data de Faturamento</th>				
@@ -59,13 +42,11 @@
 					<td width="10%"><?=$nota['dataPagamento'];?></td>
 					<td width="10%";><?=$nota['status']?></td>				
 					<td class="actions text-center">					
-						<a href="view.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-success">
-							<i class="fa fa-eye"></i> Visualizar</a>
-						<a href="edit.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-warning">
-							<i class="fa fa-pencil"></i> Editar</a>	
-						<a href="delete.php?id=<?=$nota['id']?>" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?=$nota['id']?>">
-							<i class="fa fa-trash"></i> Excluir					
-						</a>				
+						<a href="aprovar.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-success">
+							<i class="glyphicon glyphicon-thumbs-up"></i> Aprovar</a>
+						<a href="edit.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-danger">
+							<i class="glyphicon glyphicon-thumbs-down"></i> Reprovar</a>	
+						
 					</td>			
 				</tr>		
 			<?php endforeach; ?>		

@@ -207,7 +207,72 @@ function findByNumber($numero = null) {
 function antecipated($id = 0, $data = null){
   $database = open_database();
   $dataPagamento = $data["'dataPagamento'"];
-  $sql = "UPDATE notas SET status='Antecipação Solicitada',dataFaturamento=STR_TO_DATE(\"$dataPagamento\",\"%m/%d/%Y\") WHERE id=".$id.";";
+  $sql = "UPDATE notas SET status='Antecipação Solicitada',dataPagamento=STR_TO_DATE(\"$dataPagamento\",\"%m/%d/%Y\") WHERE id=".$id.";";
+  try {
+    $database->query($sql);
+
+    $_SESSION['message'] = 'Solicitação de antecipação efetuada com sucesso.';
+    $_SESSION['type'] = 'success';
+  
+  } catch (Exception $e) { 
+  
+    $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+    $_SESSION['type'] = 'danger';
+  } 
+
+  close_database($database);
+}
+
+function find_pendentes( $table = null, $id = null ) {            
+
+$database = open_database();      
+$found = null;          
+
+try {       
+  if ($id) {          
+    $sql = "SELECT id,numero,descricao,date_format(dataFaturamento,'%d/%m/%Y') as dataFaturamento,date_format(dataPagamento,'%d/%m/%Y') as dataPagamento,status FROM " . $table . " WHERE status = 'Antecipação Solicitada'";         
+    $result = $database->query($sql);                                 
+    if ($result->num_rows > 0) {            
+      $found = $result->fetch_assoc();          
+    }
+  } else {          
+    $sql = "SELECT id,numero,descricao,date_format(dataFaturamento,'%d/%m/%Y') as dataFaturamento,date_format(dataPagamento,'%d/%m/%Y') as dataPagamento,status FROM " . $table . " WHERE status='Antecipação Solicitada'";
+    //var_dump($sql);
+    //die();
+
+    $result = $database->query($sql);
+    if ($result->num_rows > 0) {            
+      $found = $result->fetch_all(MYSQLI_ASSOC);                      
+      /* Metodo alternativo           
+      $found = array();               
+      while ($row = $result->fetch_assoc()) {           
+        array_push($found, $row);         
+      }  */
+    }       
+  }
+  /*var_dump($found);
+  die();*/
+  return $found;  
+} catch (Exception $e) {        
+  $_SESSION['message'] = $e->GetMessage();        
+  $_SESSION['type'] = 'danger';     }           
+  close_database($database);      
+  return $found;    
+}
+        
+/**    
+*  Pesquisa Todos os Registros de uma Tabela     
+*/    
+function find_all_pendentes( $table ) {     
+  return find_pendentes($table);    
+}
+
+/**
+*   Aprovar Antecipação de Nota
+*/
+function aprovar($id = null){
+  $database = open_database();
+  $sql = "UPDATE notas SET status='Antecipação Aprovada' WHERE id=".$id.";";
   try {
     $database->query($sql);
 
