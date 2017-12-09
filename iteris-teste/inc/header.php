@@ -17,6 +17,7 @@
         $(document).ready(function(){
             $('#dataFaturamento').mask('00/00/0000');
             $('#dataPagamento').mask('00/00/0000');
+            $('#novaDataPagamento').mask('00/00/0000');
         });
     </script>	    
     <style>		        

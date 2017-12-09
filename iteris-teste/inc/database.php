@@ -204,6 +204,21 @@ function findByNumber($numero = null) {
 /**
 *   Atecipação de Pagamento DB
 */
-function antecipated($id = null){
-  echo $id;
+function antecipated($id = 0, $data = null){
+  $database = open_database();
+  $dataPagamento = $data["'dataPagamento'"];
+  $sql = "UPDATE notas SET status='Antecipação Solicitada',dataFaturamento=STR_TO_DATE(\"$dataPagamento\",\"%m/%d/%Y\") WHERE id=".$id.";";
+  try {
+    $database->query($sql);
+
+    $_SESSION['message'] = 'Solicitação de antecipação efetuada com sucesso.';
+    $_SESSION['type'] = 'success';
+  
+  } catch (Exception $e) { 
+  
+    $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+    $_SESSION['type'] = 'danger';
+  } 
+
+  close_database($database);
 }

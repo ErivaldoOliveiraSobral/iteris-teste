@@ -24,13 +24,10 @@ function add() {
  */
 function edit() {
 
-  $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
-
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
       if (isset($_POST['nota'])) {
         $nota = $_POST['nota'];
-        $nota['modified'] = $now->format("Y-m-d H:i:s");
         update('notas', $id, $nota);
         header('location: index.php');
       } else {
@@ -73,6 +70,18 @@ function buscaNumero($numero = null){
 *   Solicitaçãod de Antecipação de pagamento
 */
 function antecipar($id = null){
-  global $nota;
-  $nota = antecipated($id);
+  
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+      if (isset($_POST['nota'])) {
+        $nota = $_POST['nota'];
+        antecipated($id, $nota);
+        header('location: index.php');
+      } else {
+        global $nota;
+        $nota = find('notas', $id);
+      } 
+  } else {
+    header('location: index.php');
+  }
 }
