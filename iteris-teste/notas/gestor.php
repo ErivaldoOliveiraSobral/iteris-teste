@@ -44,7 +44,7 @@
 					<td class="actions text-center">					
 						<a href="aprovar.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-success">
 							<i class="glyphicon glyphicon-thumbs-up"></i> Aprovar</a>
-						<a href="edit.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-danger">
+						<a href="reprovar.php?id=<?php echo $nota['id']; ?>" class="btn btn-sm btn-danger">
 							<i class="glyphicon glyphicon-thumbs-down"></i> Reprovar</a>	
 						
 					</td>			

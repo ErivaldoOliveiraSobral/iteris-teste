@@ -73,16 +73,16 @@ function antecipar($id = null){
   
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
-      if (isset($_POST['nota'])) {
-        $nota = $_POST['nota'];
-        antecipated($id, $nota);
-        header('location: index.php');
-      } else {
-        global $nota;
-        $nota = find('notas', $id);
-      } 
+    if (isset($_POST['nota'])) {
+      $nota = $_POST['nota'];
+      antecipated($id, $nota);
+      header('location: index.php');
+    } else {
+      global $nota;
+      $nota = find('notas', $id);
+    } 
   } else {
-    header('location: index.php');
+    header('Location: index.php');
   }
 }
 
@@ -98,5 +98,24 @@ function aprove($id = null){
   global $notas;
   $notas = aprovar($id);
 
-  header('location: gestor.php');
+  header('Location: gestor.php');
+}
+
+/**
+*   Sugerir nova data de pagamento
+*/
+function novaData($id = null){
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    if (isset($_POST['nota'])) {
+      $nota = $_POST['nota'];
+      newDate($id, $nota);
+      header('Location: gestor.php');
+    } else {
+      global $nota;
+      $nota = find('notas', $id);
+    } 
+  } else {
+    header('Location: gestor.php');
+  }
 }

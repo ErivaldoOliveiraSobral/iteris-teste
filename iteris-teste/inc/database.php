@@ -287,3 +287,23 @@ function aprovar($id = null){
 
   close_database($database);
 }
+
+/**
+*   Incluir nova data de pagamento
+*/ 
+function newDate($id = null,$nota = null){
+  $database = open_database();
+  $dataPagamento = $nota["'dataPagamento'"];
+  $sql = "UPDATE notas SET status='Data de pagamento sugerida',dataPagamento=STR_TO_DATE(\"$dataPagamento\",\"%m/%d/%Y\") WHERE id=".$id.";";
+  try {
+    $database->query($sql);
+
+    $_SESSION['message'] = 'Solicitação de antecipação efetuada com sucesso.';
+    $_SESSION['type'] = 'success';
+
+  } catch (Exception $e){
+
+    $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+    $_SESSION['type'] = 'danger';
+  }
+}
